@@ -19,14 +19,14 @@ export function HeroSection() {
           <SectionBadge>Your AI Chief Commercial Officer</SectionBadge>
 
           <h1 className="hero-title">
-            Recover missed sales.
+            Recover lost revenue.
             <span>
               Stop <em>margin leakage.</em>
             </span>
           </h1>
 
           <p className="hero-copy">
-            For multichannel e-commerce brands, Stelloid turns business goals into weekly actions for profitable growth. See where to focus, understand the evidence, and decide what happens next.
+            Stelloid acts as your AI Chief Commercial Officer, instantly turning fragmented data into clear, executable weekly actions. Protect your margins and unlock profitable growth without the analytical heavy lifting.
           </p>
 
           <div className="hero-cta-wrap">

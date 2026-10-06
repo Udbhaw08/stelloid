@@ -1,4 +1,6 @@
-import { BarChart3, Calculator, Flag, Hand, KeyRound, LayoutDashboard, ListChecks, LockKeyhole, Minus, MousePointer2, RefreshCw, ShieldCheck, Sparkles, Store } from 'lucide-react';
+import React, { useState } from 'react';
+import { BarChart3, Calculator, Flag, Hand, KeyRound, LayoutDashboard, ListChecks, LockKeyhole, Minus, Plus, MousePointer2, RefreshCw, ShieldCheck, Sparkles, Store } from 'lucide-react';
+import Reveal from './Reveal';
 
 const impactStages = [
   { label: 'BEFORE', title: 'Capture the baseline', text: 'Align revenue, contribution margin and stock cover before applying the action.' },
@@ -42,9 +44,16 @@ function SectionBadge({ children }) {
 }
 
 export function VisibilitySection() {
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <>
       <section className="section section-spacing">
+        <Reveal>
         <div className="container dashboard-wrap">
           <div className="loop-heading-row dashboard-header">
             <div>
@@ -98,22 +107,30 @@ export function VisibilitySection() {
               </div>
 
               <div className="metric-row">
-                <div className="metric-box primary">
-                  <span>Net revenue</span>
-                  <strong>+18.4%</strong>
-                </div>
-                <div className="metric-box">
-                  <span>Contribution margin</span>
-                  <strong>27.8%</strong>
-                </div>
-                <div className="metric-box">
-                  <span>Average order value</span>
-                  <strong>+12.4%</strong>
-                </div>
-                <div className="metric-box">
-                  <span>Orders</span>
-                  <strong>+14.1%</strong>
-                </div>
+                <Reveal delay={0.1}>
+                  <div className="metric-box primary">
+                    <span>Net revenue</span>
+                    <strong style={{ color: '#2d6645' }}>+18.4%</strong>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.2}>
+                  <div className="metric-box">
+                    <span>Contribution margin</span>
+                    <strong>27.8%</strong>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.3}>
+                  <div className="metric-box">
+                    <span>Average order value</span>
+                    <strong style={{ color: '#2d6645' }}>+12.4%</strong>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.4}>
+                  <div className="metric-box">
+                    <span>Orders</span>
+                    <strong style={{ color: '#2d6645' }}>+14.1%</strong>
+                  </div>
+                </Reveal>
               </div>
 
               <div className="table-label">Channel performance</div>
@@ -125,27 +142,33 @@ export function VisibilitySection() {
                   <span>AOV</span>
                   <span>Commercial signal</span>
                 </div>
-                <div className="table-row">
-                  <span>Shopify</span>
-                  <span className="purple">+19.2%</span>
-                  <span>36%</span>
-                  <span>+12.4%</span>
-                  <span>Bundles lifting AOV</span>
-                </div>
-                <div className="table-row">
-                  <span>Amazon</span>
-                  <span className="purple">+22.6%</span>
-                  <span>27%</span>
-                  <span>+5.8%</span>
-                  <span>Compton Cap leads growth</span>
-                </div>
-                <div className="table-row">
-                  <span>Flipkart</span>
-                  <span className="purple">+8.1%</span>
-                  <span>23%</span>
-                  <span>+3.1%</span>
-                  <span>Margin needs attention</span>
-                </div>
+                <Reveal delay={0.1}>
+                  <div className="table-row">
+                    <span>Shopify</span>
+                    <span style={{ color: '#2d6645', fontWeight: 700 }}>+19.2%</span>
+                    <span>36%</span>
+                    <span style={{ color: '#2d6645' }}>+12.4%</span>
+                    <span>Bundles lifting AOV</span>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.2}>
+                  <div className="table-row">
+                    <span>Amazon</span>
+                    <span style={{ color: '#2d6645', fontWeight: 700 }}>+22.6%</span>
+                    <span>27%</span>
+                    <span style={{ color: '#2d6645' }}>+5.8%</span>
+                    <span>Compton Cap leads growth</span>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.3}>
+                  <div className="table-row">
+                    <span>Flipkart</span>
+                    <span style={{ color: '#a13535', fontWeight: 700 }}>+8.1%</span>
+                    <span>23%</span>
+                    <span style={{ color: '#a13535' }}>+3.1%</span>
+                    <span>Margin needs attention</span>
+                  </div>
+                </Reveal>
               </div>
             </div>
           </div>
@@ -157,9 +180,11 @@ export function VisibilitySection() {
             </p>
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section className="section section-spacing">
+        <Reveal>
         <div className="container impact-wrap">
           <div className="loop-heading-row impact-header">
             <div>
@@ -192,9 +217,11 @@ export function VisibilitySection() {
             <p className="impact-footer">Continue, adjust or stop based on observed outcomes. That’s the starting point for next week.</p>
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section className="section section-spacing">
+        <Reveal>
         <div className="container team-wrap">
           <div className="loop-heading-row team-header">
             <div>
@@ -222,9 +249,11 @@ export function VisibilitySection() {
             ))}
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section className="section section-spacing">
+        <Reveal>
         <div className="container trust-wrap">
           <div className="trust-panel left-panel">
             <SectionBadge>Trust by design</SectionBadge>
@@ -278,9 +307,11 @@ export function VisibilitySection() {
             </div>
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section className="section section-spacing">
+        <Reveal>
         <div className="container faq-wrap">
           <div className="faq-intro">
             <SectionBadge>A few good questions</SectionBadge>
@@ -292,17 +323,18 @@ export function VisibilitySection() {
           </div>
 
           <div className="faq-list">
-            {faqItems.map(({ question, answer }) => (
-              <div key={question} className="faq-item">
+            {faqItems.map(({ question, answer }, index) => (
+              <div key={question} className={`faq-item ${activeFaq === index ? 'active' : ''}`} onClick={() => toggleFaq(index)}>
                 <div className="faq-question">
                   <p>{question}</p>
-                  <Minus size={18} />
+                  {activeFaq === index ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
                 <p className="faq-answer">{answer}</p>
               </div>
             ))}
           </div>
         </div>
+        </Reveal>
       </section>
     </>
   );

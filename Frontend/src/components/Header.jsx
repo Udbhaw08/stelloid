@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react';
+import { StelloidLogoIcon } from './StelloidLogo';
 
 const navItems = ['How it works', 'Product', 'Why Stelloid'];
 
@@ -8,9 +8,9 @@ export default function Header() {
       <div className="container topbar-inner">
         <div className="brand-mark">
           <div className="brand-icon">
-            <Sparkles size={22} />
+            <StelloidLogoIcon size={26} />
           </div>
-          <span>stelloid</span>
+          <span>Stelloid</span>
         </div>
 
         <nav className="nav-menu" aria-label="Main navigation">

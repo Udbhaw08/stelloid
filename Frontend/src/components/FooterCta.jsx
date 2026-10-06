@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react';
+import { StelloidLogoIcon } from './StelloidLogo';
 
 export function FooterCta() {
   return (
@@ -7,9 +7,9 @@ export function FooterCta() {
         <div className="footer-brand-block">
           <div className="brand-mark">
             <div className="brand-icon">
-              <Sparkles size={22} />
+              <StelloidLogoIcon size={26} />
             </div>
-            <span>stelloid</span>
+            <span>Stelloid</span>
           </div>
           <p>The AI Chief Commercial Officer<br />for multichannel e-commerce brands.</p>
         </div>

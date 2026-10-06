@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<svg width="600" height="100">
+  <path d="M50 50 L550 50" stroke="#ccc" stroke-width="2" fill="none" />
+  <path id="pulse" d="M50 50 L550 50" stroke="red" stroke-width="4" fill="none" />
+</svg>
+<style>
+  #pulse {
+    stroke-dasharray: 40 1000;
+    --len: 500;
+    animation: pulse 2s linear infinite;
+  }
+  @keyframes pulse {
+    from { stroke-dashoffset: 40; }
+    to { stroke-dashoffset: calc(-1 * var(--len)); }
+  }
+</style>
+</body>
+</html>

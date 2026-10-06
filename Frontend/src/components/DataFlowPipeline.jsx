@@ -16,6 +16,7 @@ export default function DataFlowPipeline() {
   const cardsRef = useRef([]);
   const pathsRef = useRef([]);
   const [isInView, setIsInView] = useState(true);
+  const [activeId, setActiveId] = useState(null);
 
   useEffect(() => {
     const pwrap = pwrapRef.current;
@@ -29,8 +30,8 @@ export default function DataFlowPipeline() {
       const isMobile = window.innerWidth <= 700;
 
       cardsRef.current.forEach((card, i) => {
-        const path = pathsRef.current[i];
-        if (!card || !path) return;
+        const group = pathsRef.current[i];
+        if (!card || !group) return;
 
         const cr = card.getBoundingClientRect();
         let x1, y1, x2, y2, d;
@@ -50,13 +51,18 @@ export default function DataFlowPipeline() {
           d = `M${x1} ${y1} C${m} ${y1},${m} ${y2},${x2} ${y2}`;
         }
 
-        path.setAttribute('d', d);
-        try {
-          const len = path.getTotalLength();
-          path.style.setProperty('--len', `${len}`);
-        } catch {
-          // ignore if geometry not available
-        }
+        const paths = group.querySelectorAll('path');
+        paths.forEach((p) => {
+          p.setAttribute('d', d);
+          if (p.classList.contains('flow-pulse')) {
+            try {
+              const len = p.getTotalLength();
+              p.style.setProperty('--len', `${len}`);
+            } catch {
+              // ignore
+            }
+          }
+        });
       });
     }
 
@@ -84,12 +90,30 @@ export default function DataFlowPipeline() {
   return (
     <div className={`pwrap ${isInView ? 'in' : ''}`} id="pwrap" ref={pwrapRef}>
       <svg id="plines" aria-hidden="true">
-        {DATA_SOURCES.map((_, i) => (
-          <path
-            key={i}
-            ref={(el) => (pathsRef.current[i] = el)}
-            style={{ '--i': i }}
-          />
+        <defs>
+          {DATA_SOURCES.map((d, i) => (
+            <linearGradient id={`flow-grad-${i}`} key={i} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={d.color} stopOpacity="0" />
+              <stop offset="20%" stopColor={d.color} stopOpacity="1" />
+              <stop offset="80%" stopColor="#6d4bf5" stopOpacity="1" />
+              <stop offset="100%" stopColor="#6d4bf5" stopOpacity="0" />
+            </linearGradient>
+          ))}
+        </defs>
+        {DATA_SOURCES.map((d, i) => (
+          <g 
+            key={i} 
+            ref={(el) => (pathsRef.current[i] = el)} 
+            style={{ 
+              '--i': i,
+              opacity: activeId === null || activeId === i ? 1 : 0.1,
+              transition: 'opacity 0.3s ease'
+            }}
+          >
+            <path className="flow-track" />
+            <path className="flow-stream" />
+            <path className="flow-pulse" stroke={`url(#flow-grad-${i})`} />
+          </g>
         ))}
       </svg>
 
@@ -98,11 +122,15 @@ export default function DataFlowPipeline() {
           key={d.name}
           className="pc"
           ref={(el) => (cardsRef.current[i] = el)}
+          onClick={() => setActiveId(activeId === i ? null : i)}
           style={{
             '--x': d.x,
             '--y': d.y,
             '--r': d.r,
-            '--i': i
+            '--i': i,
+            opacity: activeId === null || activeId === i ? 1 : 0.3,
+            transition: 'opacity 0.3s ease',
+            cursor: 'pointer'
           }}
         >
           <div className="card">

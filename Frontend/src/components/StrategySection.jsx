@@ -1,4 +1,6 @@
 import { ListChecks, RefreshCw, ScanSearch, Target } from 'lucide-react';
+import Reveal from './Reveal';
+import TiltCard from './TiltCard';
 
 const weeklyStages = [
   {
@@ -40,6 +42,7 @@ export function StrategySection() {
   return (
     <>
       <section className="section section-purple section-spacing">
+        <Reveal>
         <div className="container loop-wrap">
           <div className="loop-heading-row">
             <div>
@@ -54,22 +57,26 @@ export function StrategySection() {
           </div>
 
           <div className="weekly-grid">
-            {weeklyStages.map(({ icon: Icon, title, text, step }) => (
-              <div key={title} className="weekly-card">
-                <div className="weekly-icon">
-                  <Icon size={22} />
-                </div>
-                <div className="weekly-divider" />
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <span>{step}</span>
-              </div>
+            {weeklyStages.map(({ icon: Icon, title, text, step }, idx) => (
+              <Reveal key={title} delay={idx * 0.1}>
+                <TiltCard className="weekly-card">
+                  <div className="weekly-icon">
+                    <Icon size={22} />
+                  </div>
+                  <div className="weekly-divider" />
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                  <span>{step}</span>
+                </TiltCard>
+              </Reveal>
             ))}
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section className="section section-spacing">
+        <Reveal>
         <div className="container action-wrap">
           <div className="action-intro">
             <SectionBadge>02 / Know your next move</SectionBadge>
@@ -89,12 +96,12 @@ export function StrategySection() {
               <strong>ALSO IN THE EXAMPLE PLAN</strong>
               <div className="move-item">
                 <span className="move-tag">Meta</span>
-                <h4>Shift 18% more prospecting spend to Canvas Cap.</h4>
+                <h3>Shift 18% more prospecting spend to Canvas Cap.</h3>
                 <p>CAC 16% below target · 4.8 weeks stock cover · CM 34%</p>
               </div>
               <div className="move-item">
                 <span className="move-tag">Shopify</span>
-                <h4>Offer an 8%-off two-pack Black Tee bundle.</h4>
+                <h3>Offer an 8%-off two-pack Black Tee bundle.</h3>
                 <p>7.2 weeks stock cover · Bundle CM 35%+</p>
               </div>
             </div>
@@ -133,7 +140,7 @@ export function StrategySection() {
 
             <div className="impact-box">
               <p className="impact-kicker">MODELLED EXPECTED IMPACT</p>
-              <h4>+9–13% product revenue over 7 days</h4>
+              <h3>+9–13% product revenue over 7 days</h3>
               <span>An example projection, not achieved results or a guarantee.</span>
             </div>
 
@@ -158,6 +165,7 @@ export function StrategySection() {
             <p className="final-note">Your team applies approved actions in your existing tools. Stelloid does not make changes autonomously.</p>
           </div>
         </div>
+        </Reveal>
       </section>
     </>
   );
