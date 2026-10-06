@@ -154,9 +154,10 @@ export function RecommendationsWorkflow() {
             position: 'relative', 
             padding: '0 20px', 
             minHeight: '500px',
-            transform: `scale(${scale})`,
+            transform: `translate(${scale < 1 ? 20 : 0}px, 0) scale(${scale})`,
             transformOrigin: 'top left',
-            marginBottom: scale < 1 ? `-${500 * (1 - scale)}px` : '0'
+            marginBottom: scale < 1 ? `-${500 * (1 - scale)}px` : '0',
+            margin: scale < 1 ? '0' : '0 auto'
           }}>
             
             {/* SVG Layer for Curves */}
