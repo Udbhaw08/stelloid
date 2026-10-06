@@ -1,4 +1,4 @@
-import { StelloidLogoIcon } from './StelloidLogo';
+
 
 export function FooterCta() {
   return (
@@ -6,10 +6,7 @@ export function FooterCta() {
       <div className="container footer-inner">
         <div className="footer-brand-block">
           <div className="brand-mark">
-            <div className="brand-icon">
-              <StelloidLogoIcon size={26} />
-            </div>
-            <span>Stelloid</span>
+            <img src="/black-logo.png" alt="Stelloid" style={{ height: '32px', width: 'auto' }} />
           </div>
           <p>The AI Chief Commercial Officer<br />for multichannel e-commerce brands.</p>
         </div>
@@ -25,7 +22,7 @@ export function FooterCta() {
 
       <div className="container footer-legal">
         <span>© 2026 Stelloid AI</span>
-        <span>Read-only access. Human-approved actions.</span>
+        <span style={{ marginLeft: '8px' }}>Read-only access. Human-approved actions.</span>
       </div>
     </footer>
   );

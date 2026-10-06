@@ -31,7 +31,7 @@ export function HeroSection() {
 
           <div className="hero-cta-wrap">
             <div className="hero-cta-buttons">
-              <button className="primary-button hero-button">
+              <button className="secondary-button hero-button">
                 Book a demo
                 <ArrowRight size={16} />
               </button>

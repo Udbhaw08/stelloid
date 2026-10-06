@@ -35,13 +35,30 @@ const PATHS = [
 export function RecommendationsWorkflow() {
   const [hovered, setHovered] = useState(null);
   const [paths, setPaths] = useState([]);
+  const [scale, setScale] = useState(1);
   
   const wrapperRef = useRef(null);
   const nodesRef = useRef({});
 
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      // If screen is smaller than 940px, scale down the 900px canvas to fit (with 40px margin)
+      if (w < 940) {
+        setScale((w - 40) / 900);
+      } else {
+        setScale(1);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const updatePaths = () => {
     if (!wrapperRef.current) return;
     const wrapperRect = wrapperRef.current.getBoundingClientRect();
+    const currentScale = wrapperRect.width / wrapperRef.current.offsetWidth || 1;
     
     const newPaths = EDGES.map(edge => {
       const fromEl = nodesRef.current[edge.from];
@@ -51,12 +68,12 @@ export function RecommendationsWorkflow() {
       const fromRect = fromEl.getBoundingClientRect();
       const toRect = toEl.getBoundingClientRect();
       
-      const startX = fromRect.right - wrapperRect.left;
-      const startY = fromRect.top + fromRect.height / 2 - wrapperRect.top;
+      const startX = (fromRect.right - wrapperRect.left) / currentScale;
+      const startY = (fromRect.top + fromRect.height / 2 - wrapperRect.top) / currentScale;
       
       // slightly offset endX to leave room for the arrow
-      const endX = toRect.left - wrapperRect.left - 4;
-      const endY = toRect.top + toRect.height / 2 - wrapperRect.top;
+      const endX = (toRect.left - wrapperRect.left) / currentScale - 4;
+      const endY = (toRect.top + toRect.height / 2 - wrapperRect.top) / currentScale;
       
       return { ...edge, startX, startY, endX, endY };
     }).filter(Boolean);
@@ -128,8 +145,19 @@ export function RecommendationsWorkflow() {
           </h2>
         </div>
 
-        <div className="wf2-wrapper" style={{ overflowX: 'auto', padding: '20px 0' }}>
-          <div className="wf2-canvas" ref={wrapperRef} style={{ display: 'flex', minWidth: '900px', justifyContent: 'space-between', position: 'relative', padding: '0 20px', minHeight: '500px' }}>
+        <div className="wf2-wrapper" style={{ overflowX: 'hidden', padding: '20px 0' }}>
+          <div className="wf2-canvas" ref={wrapperRef} style={{ 
+            display: 'flex', 
+            width: '900px',
+            minWidth: '900px', 
+            justifyContent: 'space-between', 
+            position: 'relative', 
+            padding: '0 20px', 
+            minHeight: '500px',
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+            marginBottom: scale < 1 ? `-${500 * (1 - scale)}px` : '0'
+          }}>
             
             {/* SVG Layer for Curves */}
             <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1, overflow: 'visible' }}>

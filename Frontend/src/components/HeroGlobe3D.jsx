@@ -384,7 +384,7 @@ export default function HeroGlobe3D() {
           position: relative;
         }
         @media(max-width:760px){
-          .hero-globe-3d-wrapper { height: 640px; }
+          .hero-globe-3d-wrapper { display: none !important; }
         }
         .hero-globe-3d-wrapper #stage {
           position: relative;

@@ -1,4 +1,4 @@
-import { StelloidLogoIcon } from './StelloidLogo';
+
 
 const navItems = ['How it works', 'Product', 'Why Stelloid'];
 
@@ -7,10 +7,7 @@ export default function Header() {
     <header className="topbar">
       <div className="container topbar-inner">
         <div className="brand-mark">
-          <div className="brand-icon">
-            <StelloidLogoIcon size={26} />
-          </div>
-          <span>Stelloid</span>
+          <img src="/black-logo.png" alt="Stelloid" style={{ height: '32px', width: 'auto' }} />
         </div>
 
         <nav className="nav-menu" aria-label="Main navigation">
@@ -26,8 +23,8 @@ export default function Header() {
         </nav>
 
         <div className="nav-actions">
-          <a href="#" className="signin-link">Sign in</a>
-          <button className="primary-button nav-button">Book a demo</button>
+          <a href="#" className="signin-link" style={{ whiteSpace: 'nowrap' }}>Sign in</a>
+          <button className="secondary-button nav-button">Book a demo</button>
         </div>
       </div>
     </header>
