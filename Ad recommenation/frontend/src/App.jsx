@@ -75,9 +75,16 @@ function App() {
                       <div className="meta">ID: {rec.Product_ID} | Camp: {rec.Campaign_ID}</div>
                     </td>
                     <td>
-                      <span className={`badge ${rec.Action.toLowerCase().replace(' ', '-')}`}>
+                      <span className={`badge ${rec.Action.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}>
                         {rec.Action}
                       </span>
+                      {rec.Metrics && (
+                        <div className="metrics-box">
+                          <div><span className="metric-label">ACoS:</span> {rec.Metrics.CurrentACoS}</div>
+                          <div><span className="metric-label">Break-Even:</span> {rec.Metrics.BreakEvenACoS}</div>
+                          <div><span className="metric-label">CVR:</span> {rec.Metrics.CVR}</div>
+                        </div>
+                      )}
                     </td>
                     <td className="explanation">{rec.Explanation}</td>
                   </tr>

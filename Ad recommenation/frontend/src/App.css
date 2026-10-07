@@ -181,10 +181,30 @@ tr:hover td {
   letter-spacing: 0.02em;
 }
 
-.badge.increase-spend { background-color: #dcfce7; color: #166534; }
-.badge.reduce-spend { background-color: #fee2e2; color: #991b1b; }
-.badge.wait { background-color: #fef9c3; color: #854d0e; }
+.badge.increase-bids-budget { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.badge.reduce-spend, .badge.reduce-bids { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.badge.wait { background-color: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+.badge.optimize-listing { background-color: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; }
 .badge.error { background-color: #1e293b; color: #f8fafc; }
+
+.metrics-box {
+  margin-top: 12px;
+  background: #f1f5f9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #334155;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.metric-label {
+  font-weight: 600;
+  color: #64748b;
+  display: inline-block;
+  width: 75px;
+}
 
 .explanation {
   font-size: 14px;
