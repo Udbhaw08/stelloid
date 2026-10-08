@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
-import { generateRecommendations } from './engine';
+import { generateRecommendations, validateCSVFiles } from './engine';
 import './App.css';
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
     sales: null,
     campaigns: null,
   });
+  const [validationErrors, setValidationErrors] = useState([]);
   const [results, setResults] = useState([]);
 
   const handleFileUpload = (e, key) => {
@@ -19,8 +20,9 @@ function App() {
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
-        setData((prev) => ({ ...prev, [key]: results.data }));
+      complete: (parsedResults) => {
+        setData((prev) => ({ ...prev, [key]: parsedResults.data }));
+        setValidationErrors([]); // Reset errors on new upload
       },
     });
   };
@@ -28,6 +30,23 @@ function App() {
   const isReady = data.products && data.inventory && data.sales && data.campaigns;
 
   const handleGenerate = () => {
+    // 1. Validate CSV file headers/columns upfront
+    const fileErrors = validateCSVFiles(
+      data.products,
+      data.inventory,
+      data.sales,
+      data.campaigns
+    );
+
+    if (fileErrors.length > 0) {
+      setValidationErrors(fileErrors);
+      setResults([]);
+      return;
+    }
+
+    setValidationErrors([]);
+
+    // 2. Generate recommendations with row-level validation
     const recommendations = generateRecommendations(
       data.products,
       data.inventory,
@@ -55,6 +74,21 @@ function App() {
         {isReady ? 'Generate Recommendations' : 'Please upload all 4 files...'}
       </button>
 
+      {/* File-Level Validation Errors */}
+      {validationErrors.length > 0 && (
+        <div className="validation-error-banner fade-in">
+          <h3>⚠️ CSV Structure Validation Error</h3>
+          <p>The following issues were detected in your uploaded files:</p>
+          <ul>
+            {validationErrors.map((err, idx) => (
+              <li key={idx}>{err}</li>
+            ))}
+          </ul>
+          <p className="hint">Please fix the column headers or data in the highlighted files and re-upload.</p>
+        </div>
+      )}
+
+      {/* Results Table */}
       {results.length > 0 && (
         <div className="results-section fade-in">
           <h2>Recommended Actions</h2>
@@ -69,7 +103,7 @@ function App() {
               </thead>
               <tbody>
                 {results.map((rec, i) => (
-                  <tr key={i}>
+                  <tr key={i} className={rec.Action === 'ERROR' ? 'error-row' : ''}>
                     <td>
                       <strong>{rec.Product_Name}</strong>
                       <div className="meta">ID: {rec.Product_ID} | Camp: {rec.Campaign_ID}</div>
