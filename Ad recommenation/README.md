@@ -1,4 +1,4 @@
-# How to Run
+# Ad Recommendation - Setup Guide
 
 ### Prerequisites
 - Node.js (v18 or higher)
@@ -6,15 +6,20 @@
 
 ### Steps to Run
 
-1. **Install dependencies:**
+1. **Navigate to the frontend directory:**
+   ```bash
+   cd frontend
+   ```
+
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. **Start the development server:**
+3. **Start the development server:**
    ```bash
    npm run dev
    ```
 
-3. **Open the application:**
+4. **Open the application:**
    Open the URL shown in your terminal (typically [http://localhost:5173](http://localhost:5173)).
