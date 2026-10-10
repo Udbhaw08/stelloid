@@ -77,7 +77,7 @@ export default function HeroGlobe3D() {
     scene.add(globe);
 
     const N = 650, P = [], pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
-    const c1 = new THREE.Color('#B76E79'), c2 = new THREE.Color('#E8B4B8'), tc = new THREE.Color();
+    const c1 = new THREE.Color('#7a5cf5'), c2 = new THREE.Color('#3b6cff'), tc = new THREE.Color();
     
     for (let i = 0; i < N; i++) {
       const y = 1 - i / (N - 1) * 2;
@@ -108,13 +108,13 @@ export default function HeroGlobe3D() {
 
     const lg = new THREE.BufferGeometry();
     lg.setAttribute('position', new THREE.Float32BufferAttribute(seg, 3));
-    const lm = new THREE.LineBasicMaterial({ color: 0xE8B4B8, transparent: true, opacity: 0, depthWrite: false });
+    const lm = new THREE.LineBasicMaterial({ color: 0x8f7bff, transparent: true, opacity: 0, depthWrite: false });
     globe.add(new THREE.LineSegments(lg, lm));
 
-    const sm = new THREE.MeshBasicMaterial({ color: 0xE8B4B8, transparent: true, opacity: 0, depthWrite: false });
+    const sm = new THREE.MeshBasicMaterial({ color: 0xb9a4ff, transparent: true, opacity: 0, depthWrite: false });
     globe.add(new THREE.Mesh(new THREE.SphereGeometry(1.58, 40, 28), sm));
 
-    const rm = new THREE.LineBasicMaterial({ color: 0xB76E79, transparent: true, opacity: 0 });
+    const rm = new THREE.LineBasicMaterial({ color: 0x5b7cff, transparent: true, opacity: 0 });
     RINGS.forEach(a => {
       const pts = [];
       for (let i = 0; i <= 128; i++) {
@@ -135,11 +135,11 @@ export default function HeroGlobe3D() {
 
     const ag = new THREE.BufferGeometry();
     ag.setAttribute('position', new THREE.BufferAttribute(ap, 3));
-    const am = new THREE.PointsMaterial({ size: 0.05, map: tex, color: 0xE8B4B8, transparent: true, opacity: 0, depthWrite: false });
+    const am = new THREE.PointsMaterial({ size: 0.05, map: tex, color: 0x9a86ff, transparent: true, opacity: 0, depthWrite: false });
     const amb = new THREE.Points(ag, am);
     scene.add(amb);
 
-    const nlm = new THREE.LineBasicMaterial({ color: 0xB76E79, transparent: true, opacity: 0, depthWrite: false });
+    const nlm = new THREE.LineBasicMaterial({ color: 0x6d4bf5, transparent: true, opacity: 0, depthWrite: false });
     const nl = SRC.map(() => {
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
@@ -150,7 +150,7 @@ export default function HeroGlobe3D() {
     const pp = new Float32Array(SRC.length * 3);
     const pgm = new THREE.BufferGeometry();
     pgm.setAttribute('position', new THREE.BufferAttribute(pp, 3));
-    const pmm = new THREE.PointsMaterial({ size: 0.12, map: tex, color: 0xB76E79, transparent: true, opacity: 0, depthWrite: false });
+    const pmm = new THREE.PointsMaterial({ size: 0.12, map: tex, color: 0x3b6cff, transparent: true, opacity: 0, depthWrite: false });
     scene.add(new THREE.Points(pgm, pmm));
 
     let W = 1, H = 1, mx = 0, my = 0, tx = 0, ty = 0, ps = 0, spin = 0, narrow = false, orbX = 0, orbY = 0, rx = 0, ry = 0, ppu = 100;
@@ -375,10 +375,10 @@ export default function HeroGlobe3D() {
     <>
       <style dangerouslySetInnerHTML={{__html: `
         .hero-globe-3d-wrapper {
-          --vio: #B76E79;
-          --mut: #6b6a85;
+          --vio: #6145e7;
+          --mut: #62626d;
           --ink: #14122b;
-          --bd: rgba(183,110,121,.16);
+          --bd: rgba(97,69,231,.16);
           width: 100%;
           height: 720px;
           position: relative;
@@ -482,7 +482,7 @@ export default function HeroGlobe3D() {
           color: #fff;
           font-weight: 700;
           font-size: 14px;
-          background: #F7E7CE;
+          background: #f4f1ff;
           color: var(--vio);
         }
         .hero-globe-3d-wrapper .dec .t {
@@ -500,7 +500,7 @@ export default function HeroGlobe3D() {
           line-height: 1.3;
         }
         .hero-globe-3d-wrapper .dec.imp .ic {
-          background: #F7E7CE;
+          background: #f4f1ff;
           color: var(--vio);
         }
         .hero-globe-3d-wrapper .dec.imp .t {
@@ -513,8 +513,8 @@ export default function HeroGlobe3D() {
           display: grid;
           place-items: center;
           text-align: center;
-          background: radial-gradient(circle at 35% 28%,#fff 0%,#F7E7CE 35%,#E8B4B8 72%,#B76E79 100%);
-          box-shadow: 0 18px 60px -10px rgba(183,110,121,.55),inset 0 -12px 26px rgba(183,110,121,.3),inset 0 7px 18px rgba(255,255,255,.9);
+          background: radial-gradient(circle at 35% 28%,#fff 0%,#f4f1ff 35%,#d8d0fd 72%,#6145e7 100%);
+          box-shadow: 0 18px 60px -10px rgba(97,69,231,.55),inset 0 -12px 26px rgba(97,69,231,.3),inset 0 7px 18px rgba(255,255,255,.9);
           cursor: pointer;
           transition: transform 1s;
         }
@@ -535,7 +535,7 @@ export default function HeroGlobe3D() {
         }
         .hero-globe-3d-wrapper .orb b {
           font-size: 16px;
-          color: #4a2c31;
+          color: #14122b;
           letter-spacing: -.02em;
         }
         @media(max-width:700px){
@@ -544,7 +544,7 @@ export default function HeroGlobe3D() {
         .hero-globe-3d-wrapper .orb small {
           display: block;
           font-size: 8.5px;
-          color: #B76E79;
+          color: #6145e7;
           margin-top: 2px;
           letter-spacing: .04em;
         }
@@ -557,13 +557,13 @@ export default function HeroGlobe3D() {
           <canvas id="c" ref={canvasRef}></canvas>
           <svg id="links" ref={linksRef}>
             {DEC.map((_, i) => (
-              <path key={i} ref={el => pathRefs.current[i] = el} fill="none" stroke="#B76E79" strokeDasharray="3 5" strokeWidth="1.2" />
+              <path key={i} ref={el => pathRefs.current[i] = el} fill="none" stroke="#6145e7" strokeDasharray="3 5" strokeWidth="1.2" />
             ))}
           </svg>
           <div className="item" id="orbw" ref={orbwRef}>
             <div className="orb" id="orb" ref={orbRef}>
               <div>
-                <svg viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11C7 11 11 7 12 1z" fill="#B76E79"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11C7 11 11 7 12 1z" fill="#6145e7"/></svg>
                 <b>Stelloid</b>
                 <small>AI decision layer</small>
               </div>

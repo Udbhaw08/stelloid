@@ -132,16 +132,16 @@ export function RecommendationsWorkflow() {
   };
 
   return (
-    <section className="section section-light" style={{ overflow: 'hidden', background: '#F7E7CE', padding: '56px 0 72px' }}>
+    <section className="section section-light" style={{ overflow: 'hidden', background: 'var(--stelloid-soft-2, #f8f8fa)', padding: '56px 0 72px' }}>
       <div className="container" style={{ maxWidth: '1400px' }}>
         <div className="loop-heading-row text-center" style={{ flexDirection: 'column', alignItems: 'center', marginBottom: '8px', gap: '12px' }}>
           <div className="section-badge" style={{ justifyContent: 'center', background: '#fff' }}>
-            <span className="badge-dot" style={{ background: '#B76E79' }} />
-            <span style={{ color: '#B76E79' }}>System Architecture</span>
+            <span className="badge-dot" style={{ background: '#6145e7' }} />
+            <span style={{ color: '#6145e7' }}>System Architecture</span>
           </div>
           <h2 className="section-title">
             How Stelloid documentation<br />
-            <span className="italic-accent" style={{ color: '#B76E79' }}>system works</span>
+            <span className="italic-accent" style={{ color: '#6145e7' }}>system works</span>
           </h2>
         </div>
 
@@ -167,12 +167,12 @@ export function RecommendationsWorkflow() {
                   <polygon points="0 0, 6 3, 0 6" fill="#cbd5e1" />
                 </marker>
                 <marker id="arrowhead-active" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                  <polygon points="0 0, 6 3, 0 6" fill="#B76E79" />
+                  <polygon points="0 0, 6 3, 0 6" fill="#6145e7" />
                 </marker>
                 
                 <linearGradient id="flow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#B76E79" />
-                  <stop offset="100%" stopColor="#E8B4B8" />
+                  <stop offset="0%" stopColor="#6145e7" />
+                  <stop offset="100%" stopColor="#a892ff" />
                 </linearGradient>
               </defs>
 

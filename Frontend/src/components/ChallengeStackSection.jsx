@@ -7,7 +7,7 @@ const challengeCards = [
     icon: LayoutDashboard,
     title: 'Scattered signals.',
     text: 'Sales, ads, inventory and costs live in different places. The commercial picture gets lost between them.',
-    accent: '#B76E79',
+    accent: '#6145e7',
     leftLabel: 'DATA SILOS',
     leftTitle: <>More dashboards won't<br/>answer "What's next?"</>,
     leftText: 'When sales, marketing, and inventory data live in separate tools, your team spends hours just trying to find the truth.',
